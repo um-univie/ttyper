@@ -65,13 +65,13 @@ impl Opt {
                     std::io::stdin()
                         .lock()
                         .lines()
-                        .filter_map(Result::ok)
+                        .map_while(Result::ok)
                         .collect()
                 } else {
                     let file = fs::File::open(path).expect("Error reading language file.");
                     io::BufReader::new(file)
                         .lines()
-                        .filter_map(Result::ok)
+                        .map_while(Result::ok)
                         .collect()
                 };
 
